@@ -20,6 +20,7 @@ def training_loop(epochs_number, optimizer, params, input, truth):
         optimizer.step()  # update params
 
         if epoch % 500 == 0:
+            print("Grads: {}.".format(params.grad))
             print("Epoch {}, Loss {}.".format(epoch, float(loss)))
 
 
@@ -28,8 +29,8 @@ if __name__ == '__main__':
     truth = [0.5, 14.0, 15.0, 28.0, 11.0, 8.0, 3.0, -4.0, 6.0, 13.0, 21.0]
     input = [35.7, 55.9, 58.2, 81.9, 56.3, 48.9, 33.9, 21.8, 48.4, 60.4, 68.4]
 
-    input = 0.1 * torch.tensor(input)
     truth = torch.tensor(truth)
+    input = 0.1*torch.tensor(input)
 
     params = torch.tensor([1.0, 0.0], requires_grad=True)
     optimizer = optim.SGD([params], lr=1e-2)
